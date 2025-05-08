@@ -874,7 +874,9 @@ body.loaded {
     grid-template-columns: 1fr;
     gap: 15px;
   }
-
+  .funfact-area .number {
+    font-size: 40px; /* or smaller, like 16px */
+  }
   .hero-section .intro_text svg text {
     font-size: 80px;
   }
