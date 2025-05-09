@@ -9,26 +9,31 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsSticky(window.scrollY > 0);
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 0);
+    };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <motion.header
       className={`tj-header-area header-absolute ${isSticky ? "sticky" : ""}`}
-      initial={{ opacity: 0, y: -30 }}  // Start slightly above and invisible
-      animate={{ opacity: 1, y: 0 }}    // Slide and fade in
-      transition={{ duration: 0.6, ease: "easeOut" }}  // Smooth easing
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
     >
       <div className="container flexSB">
         {/* Logo */}
         <motion.div
           className="logo-box"
-          initial={{ x: -50, opacity: 0 }}  // Slide from the left
-          animate={{ x: 0, opacity: 1 }}   // Slide to position and fade in
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
           <NavLink
@@ -43,8 +48,8 @@ export const Header = () => {
         {/* Menu */}
         <motion.div
           className={`header-menu ${isMenuOpen ? "open" : ""}`}
-          initial={{ opacity: 0, y: -20 }}   // Slide in from above
-          animate={{ opacity: 1, y: 0 }}     // Fade in and settle
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
           <nav>
@@ -52,8 +57,8 @@ export const Header = () => {
               {linklist.map((link) => (
                 <motion.li
                   key={link.id}
-                  initial={{ opacity: 0, x: -30 }}  // Start from the left, invisible
-                  animate={{ opacity: 1, x: 0 }}    // Fade in and slide to position
+                  initial={{ x: -30, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.4, delay: 0.1 * link.id }}
                 >
                   <NavLink
